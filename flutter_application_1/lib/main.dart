@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,8 +12,9 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Welcome to Flutter'),
         ),
-        body: Center(
-          child: Text('Hello World?'),
+        body: WebView(
+          initialUrl: 'https://flutter.dev',
+          javascriptMode: JavascriptMode.unrestricted,
         ),
       ),
     );
