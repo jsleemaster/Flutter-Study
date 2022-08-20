@@ -13,3 +13,5 @@ flutter Study
 # toolCheck 터미널에서 실행
 
 3. flutter doctor
+4. flutter create 폴더명 (생략)
+5. cd ./app && flutter run
