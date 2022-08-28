@@ -11,8 +11,13 @@
   1. StatefulWidget 클래스가
   2. State 클래스 의 인스턴스를 생성합니다.
      - StatefulWidget 클래스 그자체는 변경불가능합니다. 하지만 State 클래스가 위젯의 수명동안 상태를 유지합니다.
+- Dart 언어에서는 식별자 앞에 밑줄(\_)을 붙이면 프라이빗 적용이 됩니다.
 
 ## 외부패키지 사용
 
 - Flutter 앱에서 의존성 및 asset 관리는 pubspec 파일이 담당
   - 추가 후 $ flutter pub get 실행
+
+## 클래스
+
+- ListView 클래스는 builder 속성인 itemBuilder를 제공합니다
