@@ -4,6 +4,7 @@ void main() => runApp(MyApp());
 
 class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
+  final _saved = <WordPair>{}; 
   final _biggerFont = const TextStyle(fontSize: 18.0);
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,7 @@ class RandomWordsState extends State<RandomWords> {
           /* 4. 가능한 단어 쌍을 모두 사용하고 나면, 10개를 더 생성하고 제안 목록에 추가합니다.*/
           _suggestions.addAll(generateWordPairs().take(10)); 
         }
+        final alreadySaved = _saved.contains(_suggestions[index]);
         return _buildRow(_suggestions[index]);
       });
   }
@@ -43,6 +45,11 @@ class RandomWordsState extends State<RandomWords> {
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
+      ),
+      trailing: Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
+        semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
       ),
     );
   }
