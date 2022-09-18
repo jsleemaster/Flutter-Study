@@ -22,3 +22,7 @@
 ## 클래스
 
 - ListView 클래스는 builder 속성인 itemBuilder를 제공합니다
+
+## unsound null safety Error
+
+- flutter run --no-sound-safety : 해당 오류를 무시하고 실행한다.
