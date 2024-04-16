@@ -13,7 +13,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int totalSeconds = 1500;
+  static const maxValue = 1500;
+  int totalSeconds = maxValue;
   int totalCount = 0;
   late Timer timer;
   bool isRunning = false;
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void onTic(Timer timer) {
     if (totalSeconds == 0) {
       setState(() {
-        totalSeconds = 1500;
+        totalSeconds = maxValue;
         totalCount = totalCount + 1;
         isRunning = false;
       });
@@ -47,6 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onReset() {
+    timer.cancel();
+    setState(() {
+      totalSeconds = maxValue;
+      isRunning = false;
+    });
+  }
+
   String format(int seconds) {
     var time =
         Duration(seconds: seconds).toString().split('.').first.substring(2);
@@ -68,14 +77,19 @@ class _HomeScreenState extends State<HomeScreen> {
           Flexible(
             flex: 2,
             child: Center(
-              child: IconButton(
-                iconSize: 120,
-                color: Theme.of(context).cardColor,
-                onPressed: isRunning ? onStopPressed : onStartPressed,
-                icon: Icon(isRunning
-                    ? Icons.pause_circle_rounded
-                    : Icons.play_circle_outlined),
-              ),
+              child: Column(children: [
+                IconButton(
+                  iconSize: 120,
+                  color: Theme.of(context).cardColor,
+                  onPressed: isRunning ? onStopPressed : onStartPressed,
+                  icon: Icon(isRunning
+                      ? Icons.pause_circle_rounded
+                      : Icons.play_circle_outlined),
+                ),
+                IconButton(
+                    onPressed: onReset,
+                    icon: const Icon(Icons.rotate_90_degrees_ccw_rounded))
+              ]),
             ),
           ),
           Flexible(
